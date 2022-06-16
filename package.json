@@ -1,0 +1,20 @@
+{
+  "name": "backend_burger_stone",
+  "version": "1.0.0",
+  "description": "Backend de la app movil",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "flutter",
+    "delivery",
+    "nodejs"
+  ],
+  "author": "Josue Leon",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "http": "^0.0.1-security"
+  }
+}
