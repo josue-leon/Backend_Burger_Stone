@@ -41,6 +41,7 @@ server.listen(3000, '192.168.100.15' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 })
 
+//que cague que te funciono asi xD no te rias
 
 
 /*app.get('/', (req, res)=>{

@@ -17,23 +17,19 @@ Usuario.getAll = () => {
 //creamos un nuevo usuario en la base de datos
 Usuario.create = (usuario)=>{
     const sql =`
-    
      INSERT INTO
      usuario(
-        cedula,
+        cedula,    
         email,
         nombre,
         apellido,
         telefono,
         imagen,
         password,
-        disponible,
-        session_token,
         creacion_fecha,
         update_fecha
-
      )
-     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURING cedula
+     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id
     `;
     return db.oneOrNone(sql, [
         usuario.cedula,
@@ -43,12 +39,9 @@ Usuario.create = (usuario)=>{
         usuario.telefono,
         usuario.imagen,
         usuario.password,
-        usuario.disponible,
         new Date(),
         new Date()
-
     ])
-
 }
  
 module.exports = Usuario;
