@@ -1,5 +1,8 @@
 //PARTE DE CREANDO API REST
 const db = require('../config/config');// se importala variable donde se encuetra lojada la base de datos, la cual nos sirve para realizar las sentencias SQL
+const crypto = require('crypto');
+
+const { userInfo } = require('os');
 
 const Usuario = {};
 
@@ -16,6 +19,10 @@ Usuario.getAll = () => {
 
 //creamos un nuevo usuario en la base de datos
 Usuario.create = (usuario)=>{
+
+    const myPasswordHashed = crypto.createHash('md5').update(usuario.password).digest('hex');
+    usuario.password = myPasswordHashed;
+
     const sql =`
      INSERT INTO
      usuario(

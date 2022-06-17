@@ -28,7 +28,7 @@ module.exports = {
             return res.status(201).json({
                 success: true,
                 message: 'El registro se realizo correctamente',//mensaje de confirmacion de registro
-                data: data.cedula
+                data: data.id
             });
         }
         catch (error){

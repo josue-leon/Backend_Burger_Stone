@@ -24,23 +24,23 @@ const databaseConfig = {
 };
 */
 
-// ERIKA
+/* ERIKA
 const databaseConfig = {
     'host': '127.0.0.1',
     'port':  5432,
     'database': 'BurgerStone',
     'user': 'postgres',
     'password': 'ecka3011' 
-};
+};*/
 
-/*ANDREA
+//ANDREA
 const databaseConfig = {
     'host': '127.0.0.1', //192.168.100.15
     'port':  5432, //3000
     'database': 'BurgerStone',
     'user': 'postgres',
     'password': 'root' 
-};*/
+};
 
 const db = pgp(databaseConfig);
 module.exports = db;
