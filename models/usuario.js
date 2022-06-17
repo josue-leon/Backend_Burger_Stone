@@ -17,6 +17,46 @@ Usuario.getAll = () => {
     return db.manyOrNone(sql);//metodo para obtener datos a la bd
 }
 
+Usuario.findById = (id, callback) => {
+    const sql = `
+    SELECT
+        id,
+        cedula,    
+        email,
+        nombre,
+        apellido,
+        telefono,
+        imagen,
+        password,
+        session_token
+    FROM
+        usuario
+    WHERE
+        id = $1   
+`;
+
+    return db.oneOrNone(sql, id).then(user => {callback(null, user); })
+}
+
+Usuario.findByEmail = (email) => {
+    const sql = `
+    SELECT
+        id,
+        cedula,    
+        email,
+        nombre,
+        apellido,
+        telefono,
+        imagen,
+        password,
+        session_token
+    FROM
+        usuario
+    WHERE
+        email = $1   
+    `;
+    return db.oneOrNone(sql, email);
+}
 //creamos un nuevo usuario en la base de datos
 Usuario.create = (usuario)=>{
 
@@ -50,5 +90,13 @@ Usuario.create = (usuario)=>{
         new Date()
     ])
 }
- 
+
+Usuario.isPasswordMatched = (userPassword, hash) => {
+    const myPasswordHashed = crypto.createHash('md5').update(userPassword).digest('hex');
+    if (myPasswordHashed === hash) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = Usuario;

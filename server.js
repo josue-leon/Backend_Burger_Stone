@@ -25,11 +25,11 @@ app.disable('x-powered-by');
 app.set ('port', port);
 
 //JOSUE
-/*
+
 server.listen(3000, '192.168.0.120' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
-*/
+
 
 //MICHELLE
 /*server.listen(3000, '192.168.9.1' || 'localhost', function(){
@@ -42,10 +42,11 @@ server.listen(3000, '192.168.0.120' || 'localhost', function(){
 usuarios (app);
 //
 //ANDrEA
+/*
 server.listen(3000, '192.168.100.15' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 })
-
+*/
 //que cague que te funciono asi xD no te rias
 
 

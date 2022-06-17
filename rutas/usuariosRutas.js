@@ -7,5 +7,8 @@ module.exports = (app) => {
 
     //guardar datos
 
-    app.post('/BurgerStone/usuario/create',UsuariosController.register)
+    app.post('/BurgerStone/usuario/create',UsuariosController.register);
+
+    app.post('/BurgerStone/usuario/login',UsuariosController.login);
+
 }
