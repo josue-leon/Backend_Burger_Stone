@@ -45,7 +45,7 @@ module.exports = {
 
     async login(req, res, next){
         try{
-            const email = req.body.email;
+            const email = req.body.email;// lo que requiere para la autenticacion
             const password = req.body.password;
 
             const myUser = await Usuario.findByEmail(email);
