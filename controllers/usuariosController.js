@@ -29,7 +29,7 @@ module.exports = {
 
             return res.status(201).json({
                 success: true,
-                message: 'El registro se realizo correctamente',//mensaje de confirmacion de registro
+                message: 'El registro se realizó correctamente',//mensaje de confirmacion de registro
                 data: data.id
             });
         }
@@ -74,7 +74,8 @@ module.exports = {
 
                 return res.status(201).json({
                     success: true,
-                    data: data
+                    data: data,
+                    message: 'El usuario ha sido autenticado'
                 });
             }
             else {
@@ -88,7 +89,7 @@ module.exports = {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: 'Error al logearse',//mensaje de confirmacion de registro
+                message: 'Error al loguearse',//mensaje de confirmacion de registro
                 error: error
             });
         }
