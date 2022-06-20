@@ -13,18 +13,17 @@ types.setTypeParser(1114, function(stringValue){
 });
 
 
-//JOSUE
-/*
+/*JOSUE
 const databaseConfig = {
     'host': '127.0.0.1',
     'port':  5432,
     'database': 'BurgerStone',
     'user': 'postgres',
     'password': '0602100620' 
-};
-*/
+};*/
 
-/* ERIKA
+/*
+//ERIKA
 const databaseConfig = {
     'host': '127.0.0.1',
     'port':  5432,
@@ -32,7 +31,6 @@ const databaseConfig = {
     'user': 'postgres',
     'password': 'ecka3011' 
 };*/
-
 //ANDREA
 
 const databaseConfig = {

@@ -32,8 +32,7 @@ Usuario.findById = (id, callback) => {
     FROM
         usuario
     WHERE
-        id = $1   
-`;
+        id = $1`;
 
     return db.oneOrNone(sql, id).then(user => {callback(null, user); })
 }
