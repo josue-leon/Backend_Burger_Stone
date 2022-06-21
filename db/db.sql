@@ -17,6 +17,45 @@ CREATE TABLE roles(
 	update_fecha TIMESTAMP (0) NOT NULL
 );
 
+INSERT INTO roles(
+	nombre, 
+	ruta,
+	creacion_fecha,
+	update_fecha
+)
+VALUES(
+	'CLIENTE',
+	'client/products/list',
+	'2022/06/21',
+	'2022/06/21'
+);
+
+INSERT INTO roles(
+	nombre, 
+	ruta,
+	creacion_fecha,
+	update_fecha
+)
+VALUES(
+	'RESTAURANTE',
+	'restaurant/orders/list',
+	'2022/06/21',
+	'2022/06/21'
+);
+
+INSERT INTO roles(
+	nombre, 
+	ruta,
+	creacion_fecha,
+	update_fecha
+)
+VALUES(
+	'REPARTIDOR',
+	'delivery/orders/list',
+	'2022/06/21',
+	'2022/06/21'
+);
+
 DROP TABLE IF EXISTS usuario CASCADE;
 CREATE TABLE usuario(
 	id BIGSERIAL PRIMARY KEY,

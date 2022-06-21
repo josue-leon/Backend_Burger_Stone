@@ -1,5 +1,6 @@
 //PARTE DE CREANDO API REST
 const Usuario = require('../models/usuario');
+const Rol = require('../models/rol');
 const jwt = require('jsonwebtoken');     
 const keys = require('../config/keys');     
 
@@ -26,10 +27,12 @@ module.exports = {
         try{
             const usuario= req.body;//captura parametros del body postman
             const data = await Usuario.create(usuario);// metodo create q recibe un usuario
+            
+            await Rol.create(data.id, 1);  //ROL POR DEFECTO, CLIENTE
 
             return res.status(201).json({
                 success: true,
-                message: 'El registro se realizó correctamente',//mensaje de confirmacion de registro
+                message: 'El registro se realizó correctamente, puede iniciar sesión',//mensaje de confirmacion de registro
                 data: data.id
             });
         }
@@ -69,8 +72,11 @@ module.exports = {
                     email: myUser.email,
                     phone: myUser.phone,
                     image: myUser.image,
-                    session_token: `JWT ${token}`
+                    session_token: `JWT ${token}`,
+                    roles: myUser.roles
                 }
+
+                 console.log(`USUARIO ENVIADO: ${data}`);
 
                 return res.status(201).json({
                     success: true,
