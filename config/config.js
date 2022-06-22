@@ -15,13 +15,13 @@ types.setTypeParser(1114, function(stringValue){
 
 //JOSUE
 
-const databaseConfig = {
+/*const databaseConfig = {
     'host': '127.0.0.1',
     'port':  5432,
     'database': 'BurgerStone',
     'user': 'postgres',
     'password': '0602100620' 
-};
+};*/
 
 /*
 //ERIKA
@@ -34,7 +34,7 @@ const databaseConfig = {
 };*/
 //ANDREA
 
-/*
+
 const databaseConfig = {
     'host': '127.0.0.1', //192.168.100.15
     'port':  5432, //3000
@@ -42,6 +42,6 @@ const databaseConfig = {
     'user': 'postgres',
     'password': 'root' 
 };
-*/
+
 const db = pgp(databaseConfig);
 module.exports = db;

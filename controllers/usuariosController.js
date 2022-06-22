@@ -28,6 +28,8 @@ module.exports = {
             const usuario= req.body;//captura parametros del body postman
             const data = await Usuario.create(usuario);// metodo create q recibe un usuario
             
+            console.log('DATA ID');
+            console.log(data.id);
             await Rol.create(data.id, 1);  //ROL POR DEFECTO, CLIENTE
 
             return res.status(201).json({
@@ -37,7 +39,7 @@ module.exports = {
             });
         }
         catch (error){
-            console.log('Error: $(error)');
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al registrar un usuario',//mensaje de confirmacion de registro
