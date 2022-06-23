@@ -3,6 +3,7 @@ const Usuario = require('../models/usuario');
 const Rol = require('../models/rol');
 const jwt = require('jsonwebtoken');     
 const keys = require('../config/keys');     
+const storage = require('../utils/cloud_storage');
 
 module.exports = {
 
@@ -26,6 +27,43 @@ module.exports = {
     async register(req, res, next){
         try{
             const usuario= req.body;//captura parametros del body postman
+            const data = await Usuario.create(usuario);// metodo create q recibe un usuario
+            
+            console.log('DATA ID');
+            console.log(data.id);
+            await Rol.create(data.id, 1);  //ROL POR DEFECTO, CLIENTE
+
+            return res.status(201).json({
+                success: true,
+                message: 'El registro se realizó correctamente, puede iniciar sesión',//mensaje de confirmacion de registro
+                data: data.id
+            });
+        }
+        catch (error){
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al registrar un usuario',//mensaje de confirmacion de registro
+                error: error
+            });
+        }
+    },
+
+    async registerWithImagen(req, res, next){
+        try{
+            const usuario= JSON.parse(req.body.usuario);//captura parametros del body postman
+            console.log(`Datos enviados del usuario: ${usuario}`);
+            const files = req.files;
+
+            if (files.length > 0){
+                const pathImage = `image_${Date.now()}`; // Nombre del archivo
+                const url = await storage(files[0], pathImage);
+
+                if (url != undefined && url != null){
+                    usuario.imagen = url;
+                }
+            }
+
             const data = await Usuario.create(usuario);// metodo create q recibe un usuario
             
             console.log('DATA ID');

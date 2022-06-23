@@ -4,12 +4,26 @@ const http = require('http');
 const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
+const multer = require('multer');
+const admin = require('firebase-admin');
+const serviceAccount = require('./serviceAccountKey.json');
 
+/*
+* Inicializar Firebase Admin
+*/
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+})
+
+const upload = multer({
+    storage: multer.memoryStorage()
+})
 
 /*
 *Se va a instanciar las RUTAS// PARTE DE CREANDO API REST
 */
 const usuarios = require('./rutas/usuariosRutas');
+const { credential } = require('firebase-admin');
 
 const port = process.env.PORT || 3000;
 app.set('port', port);
@@ -44,7 +58,7 @@ server.listen(3000, '192.168.9.1' || 'localhost', function(){
 *PARA EJECUTAR se llama a las RUTAS// PARTE DE CREANDO API REST
 */
 
-usuarios (app);
+usuarios (app, upload);
 /*
 //ANDrEA /Darwin
 
