@@ -74,6 +74,7 @@ SELECT
     `;
     return db.oneOrNone(sql, email);
 }
+
 //creamos un nuevo usuario en la base de datos
 Usuario.create = (usuario)=>{
 
