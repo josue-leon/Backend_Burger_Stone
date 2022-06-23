@@ -69,11 +69,11 @@ module.exports = {
                 const data = {
                     id: myUser.id,
                     cedula: myUser.cedula,
-                    name: myUser.name,
-                    lastname: myUser.lastname,
+                    nombre: myUser.nombre,
+                    apellido: myUser.apellido,
                     email: myUser.email,
-                    phone: myUser.phone,
-                    image: myUser.image,
+                    telefono: myUser.telefono,
+                    imagen: myUser.imagen,
                     session_token: `JWT ${token}`,
                     roles: myUser.roles
                 }
