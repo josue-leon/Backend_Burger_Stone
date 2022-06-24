@@ -51,6 +51,21 @@ module.exports = {
 
     async register(req, res, next){
         try{
+             // Comprobar que el email no se repita
+             const email = req.body.email;
+             const myUser = await Usuario.findByEmail(email);
+ 
+             if (!myUser) 
+             {
+             }
+             else 
+             {
+                 return res.status(401).json({
+                     success: false,
+                     message: 'El email ya se encuentra registrado'
+                 });
+             } 
+
             const usuario= req.body;//captura parametros del body postman
             const data = await Usuario.create(usuario);// metodo create q recibe un usuario
             
