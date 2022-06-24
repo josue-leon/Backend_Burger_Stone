@@ -24,6 +24,31 @@ module.exports = {
 
     //metodo asincrono
     
+    async validateCI(req, res, next){
+        try {
+            const cedula = req.body.cedula
+            const myUser = await Usuario.findByCI(cedula);
+           
+            console.log(myUser.cedula);
+            return res.status(201).json({
+                success: true,
+                message: 'cedula ya registrada'
+            });
+
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(401).json({
+                success: false,
+                message: 'algo malio sal :(',
+                error: error
+            });
+            
+        }
+
+
+    },
+
     async register(req, res, next){
         try{
             const usuario= req.body;//captura parametros del body postman
@@ -43,7 +68,7 @@ module.exports = {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: 'Error al registrar un usuario',//mensaje de confirmacion de registro
+                message: 'Error al registrar un usuario',//mensaje de error
                 error: error
             });
         }
@@ -51,9 +76,11 @@ module.exports = {
 
     async registerWithImagen(req, res, next){
         try{
-            const usuario= JSON.parse(req.body.usuario);//captura parametros del body postman
+            const usuario = JSON.parse(req.body.usuario);//captura parametros del body postman
             console.log(`Datos enviados del usuario: ${usuario}`);
             const files = req.files;
+
+
 
             if (files.length > 0){
                 const pathImage = `image_${Date.now()}`; // Nombre del archivo

@@ -17,6 +17,28 @@ Usuario.getAll = () => {
     return db.manyOrNone(sql);//metodo para obtener datos a la bd
 }
 
+
+Usuario.findByCI = (cedula, callback) => {
+    const sql = `
+    SELECT
+        id,
+        cedula,    
+        email,
+        nombre,
+        apellido,
+        telefono,
+        imagen,
+        password,
+        session_token
+    FROM
+        usuario
+    WHERE
+        cedula = $1`;
+
+    return db.oneOrNone(sql, cedula); 
+}
+
+
 Usuario.findById = (id, callback) => {
     const sql = `
     SELECT

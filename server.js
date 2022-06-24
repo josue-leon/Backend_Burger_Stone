@@ -50,22 +50,23 @@ server.listen(3000, '192.168.0.120' || 'localhost', function(){
 */
 
 //MICHELLE
-server.listen(3000, '192.168.9.1' || 'localhost', function(){
+/*server.listen(3000, '192.168.9.1' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
-
+*/
 /*
 *PARA EJECUTAR se llama a las RUTAS// PARTE DE CREANDO API REST
 */
 
 usuarios (app, upload);
-/*
+
+
+
+
 //ANDrEA /Darwin
-
-
 server.listen(3000, '192.168.100.15' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
-})*/
+})
 
 //que cague que te funciono asi xD no te rias
 
