@@ -6,7 +6,7 @@ module.exports = (app, upload) => {
     app.get('/BurgerStone/usuario/getAll', UsuariosController.getAll);//para crear una nueva ruta
 
     //guardar datos
-    app.post('/BurgerStone/usuario/create', upload.array('image', 1), UsuariosController.registerWithImagen);
+    app.post('/BurgerStone/usuario/create', upload.array('image', 1), UsuariosController.register);
     app.post('/BurgerStone/usuario/login',UsuariosController.login);
 
 }
