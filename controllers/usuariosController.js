@@ -80,6 +80,8 @@ module.exports = {
             });
         }
         catch (error){
+            console.log('aaa');
+
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
@@ -93,9 +95,8 @@ module.exports = {
         try{
             const usuario = JSON.parse(req.body.usuario);//captura parametros del body postman
             console.log(`Datos enviados del usuario: ${usuario}`);
+           
             const files = req.files;
-
-
 
             if (files.length > 0){
                 const pathImage = `image_${Date.now()}`; // Nombre del archivo
@@ -119,6 +120,7 @@ module.exports = {
             });
         }
         catch (error){
+            console.log('aaa');
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
