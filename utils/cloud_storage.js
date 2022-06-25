@@ -7,11 +7,11 @@ const uuid = uuidv4();
 
 
 const storage = new Storage({
-    projectId: "burger-stone",
+    projectId: "burgerstone-app",
     keyFilename: './serviceAccountKey.json'
 });
 
-const bucket = storage.bucket("gs://burger-stone.appspot.com/");
+const bucket = storage.bucket("gs://burgerstone-app.appspot.com/");
 
 /**
  * Subir el archivo a Firebase Storage

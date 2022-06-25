@@ -7,7 +7,7 @@ module.exports = (app, upload) => {
     app.get('/BurgerStone/usuario/validateCI',UsuariosController.validateCI);// validar si la cedula existe 
 
     //guardar datos
-    app.post('/BurgerStone/usuario/create', upload.array('image', 1), UsuariosController.register);
+    app.post('/BurgerStone/usuario/create', upload.array('image', 1), UsuariosController.registerWithImagen);
     app.post('/BurgerStone/usuario/login',UsuariosController.login);
 
 }
