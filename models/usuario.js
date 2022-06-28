@@ -97,6 +97,46 @@ SELECT
     return db.oneOrNone(sql, email);
 }
 
+// Para actualizar 
+Usuario.findByUserId = (id) => {
+    const sql = `
+SELECT
+        U.id,
+        U.cedula,    
+        U.email,
+        U.nombre,
+        U.apellido,
+        U.telefono,
+        U.imagen,
+        U.password,
+        U.session_token,
+        json_agg(
+            json_build_object(
+                'id', R.id,
+                'nombre', R.nombre,
+                'imagen', R.imagen,
+                'ruta',   R.ruta
+            )
+        ) AS roles
+    FROM
+        usuario AS U
+    INNER JOIN
+        usuarioroles AS UHR
+    ON
+        UHR.id_usuario = U.id
+    INNER JOIN 
+        roles AS R
+    ON
+        R.id = UHR.id_rol
+    WHERE
+        U.id = $1
+    GROUP BY 
+        U.id  
+    `;
+    return db.oneOrNone(sql, id);
+}
+
+
 //creamos un nuevo usuario en la base de datos
 Usuario.create = (usuario)=>{
 

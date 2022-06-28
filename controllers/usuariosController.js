@@ -49,6 +49,24 @@ module.exports = {
 
 
     },
+    
+    // Encontrar por id (Para actualizar en la app)
+    async findById(req, res, next){
+        try {
+            const id = req.params.id;
+
+            const data = await Usuario.findByUserId(id);
+            console.log(`Usuario: ${data}`);
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener el usuario por ID'
+            });
+        }
+    },
 
     async register(req, res, next){
         try{
