@@ -4,6 +4,7 @@ const Rol = require('../models/rol');
 const jwt = require('jsonwebtoken');     
 const keys = require('../config/keys');     
 const storage = require('../utils/cloud_storage');
+const { update } = require('../models/usuario');
 
 module.exports = {
 
@@ -125,6 +126,44 @@ module.exports = {
             return res.status(501).json({
                 success: false,
                 message: 'Error al registrar un usuario',//mensaje de confirmacion de registro
+                error: error
+            });
+        }
+    },
+
+    // Actualizar datos
+    async update(req, res, next){
+        try{
+            const usuario = JSON.parse(req.body.usuario);//captura parametros del body postman
+            console.log(`Datos enviados del usuario: ${usuario}`);
+           
+            const files = req.files;
+
+            if (files.length > 0){
+                const pathImage = `image_${Date.now()}`; // Nombre del archivo
+                const url = await storage(files[0], pathImage);
+
+                if (url != undefined && url != null){
+                    usuario.imagen = url;
+                }
+            }
+
+            await Usuario.update(usuario);// metodo create q recibe un usuario
+            
+            //console.log('DATA ID');
+            //console.log(data.id);
+
+            return res.status(201).json({
+                success: true,
+                message: 'Los datos del usuario se actualizaron correctamente'
+            });
+        }
+        catch (error){
+            //console.log('aaa');
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al actualizar la información del usuario',//mensaje de confirmacion de registro
                 error: error
             });
         }

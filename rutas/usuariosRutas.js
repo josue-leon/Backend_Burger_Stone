@@ -11,6 +11,8 @@ module.exports = (app, upload) => {
     app.post('/BurgerStone/usuario/create', upload.array('image', 1), UsuariosController.registerWithImagen);
     app.post('/BurgerStone/usuario/login',UsuariosController.login);
 
+    // Actualizar datos
+    app.put('/BurgerStone/usuario/update', upload.array('image', 1), UsuariosController.update)
 }
 
 

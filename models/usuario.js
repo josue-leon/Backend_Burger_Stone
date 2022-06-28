@@ -131,6 +131,30 @@ Usuario.create = (usuario)=>{
     ])
 }
 
+// Actualizar información de un usuario
+Usuario.update = (usuario) => {
+    const sql = `
+    UPDATE
+        usuario
+    SET
+        nombre = $2,
+        apellido = $3,
+        telefono = $4,
+        imagen = $5,
+        update_fecha = $6
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        usuario.id,
+        usuario.nombre,
+        usuario.apellido,
+        usuario.telefono,
+        usuario.imagen,
+        new Date()
+    ]);
+}
+
 Usuario.isPasswordMatched = (userPassword, hash) => {
     const myPasswordHashed = crypto.createHash('md5').update(userPassword).digest('hex');
     if (myPasswordHashed === hash) {
