@@ -191,7 +191,7 @@ module.exports = {
         try{
             const email = req.body.email;// lo que requiere para la autenticacion
             const password = req.body.password;
-
+            console.log("ACA");
             const myUser = await Usuario.findByEmail(email);
 
             if (!myUser) {
@@ -203,7 +203,7 @@ module.exports = {
 
             if (Usuario.isPasswordMatched(password, myUser.password)) {
                 const token = jwt.sign({id: myUser.id, email: myUser.email}, keys.secretOrKey, {
-                    // expiresIn: (60*60*24) // 1 HORA
+                     expiresIn: (60*60*24) // 1 HORA
                 });
                 const data = {
                     id: myUser.id,
