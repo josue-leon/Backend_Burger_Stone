@@ -203,4 +203,28 @@ Usuario.isPasswordMatched = (userPassword, hash) => {
     return false;
 }
 
+// Actualizar información de un usuario
+Usuario.updateToken = (id, token) => {
+    const sql = `
+    UPDATE
+        usuario
+    SET
+        session_token = $2
+   
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        id,
+        token
+    ]);
+}
+
+Usuario.isPasswordMatched = (userPassword, hash) => {
+    const myPasswordHashed = crypto.createHash('md5').update(userPassword).digest('hex');
+    if (myPasswordHashed === hash) {
+        return true;
+    }
+    return false;
+}
 module.exports = Usuario;

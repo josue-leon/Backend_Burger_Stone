@@ -7,6 +7,7 @@ const cors = require('cors');
 const multer = require('multer');
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
+const passport = require('passport');
 
 /*
 * Inicializar Firebase Admin
@@ -35,6 +36,10 @@ app.use(express.urlencoded({
 }));
 
 app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
 app.disable('x-powered-by');
 app.set ('port', port);
 
@@ -43,16 +48,18 @@ app.set ('port', port);
 })*/
 
 //JOSUE
-/*
+
 server.listen(3000, '192.168.0.120' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
-*/
 
+
+/*
 //MICHELLE
 server.listen(3000, '192.168.9.1' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
+*/
 /*
 *PARA EJECUTAR se llama a las RUTAS// PARTE DE CREANDO API REST
 */

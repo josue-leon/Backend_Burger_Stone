@@ -217,6 +217,8 @@ module.exports = {
                     roles: myUser.roles
                 }
 
+                await Usuario.updateToken(myUser.id, `JWT ${token}`);
+
                  console.log(`USUARIO ENVIADO: ${data}`);
 
                 return res.status(201).json({
@@ -237,6 +239,25 @@ module.exports = {
             return res.status(501).json({
                 success: false,
                 message: 'Error al loguearse',//mensaje de confirmacion de registro
+                error: error
+            });
+        }
+    },
+
+    async logout(req, res, next){
+        try {
+            const id = req.body.id;
+            await Usuario.updateToken(id, null);
+            return res.status(201).json({
+                success: true,
+                message: 'La sesion del usuario se ha cerrado correctamente'
+            });
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al cerrar sesion',//mensaje de confirmacion de registro
                 error: error
             });
         }
