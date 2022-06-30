@@ -112,6 +112,7 @@ module.exports = {
 
     async registerWithImagen(req, res, next){
         try{
+            console.log('aqui');
             const usuario = JSON.parse(req.body.usuario);//captura parametros del body postman
             console.log(`Datos enviados del usuario: ${usuario}`);
            
