@@ -73,6 +73,17 @@ CREATE TABLE usuario(
 	update_fecha TIMESTAMP (0) NOT NULL
 );
 
+DROP TABLE IF EXISTS usuarioRoles CASCADE;
+CREATE TABLE usuarioRoles(
+	id_usuario BIGINT NOT NULL,
+	id_rol BIGINT NOT NULL,
+	creacion_fecha TIMESTAMP (0) NOT NULL,
+	update_fecha TIMESTAMP (0) NOT NULL,
+	PRIMARY KEY(id_usuario, id_rol),	
+	FOREIGN KEY(id_usuario) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(id_rol) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS direccion CASCADE;
 CREATE TABLE direccion(
 	id BIGSERIAL PRIMARY KEY,
@@ -105,20 +116,20 @@ CREATE TABLE orden(
 
 DROP TABLE IF EXISTS categorias CASCADE;
 CREATE TABLE categorias(
-	id BIGINT PRIMARY KEY,
+	id BIGSERIAL PRIMARY KEY,
 	nombre VARCHAR(180),
 	descripcion VARCHAR(255),
 	creacion_fecha TIMESTAMP (0) NOT NULL,
 	update_fecha TIMESTAMP (0) NOT NULL	
 );
 
-DROP TABLE IF EXISTS Producto CASCADE;
-CREATE TABLE Producto(
-	id_producto BIGINT PRIMARY KEY,
+DROP TABLE IF EXISTS producto CASCADE;
+CREATE TABLE producto(
+	id BIGSERIAL PRIMARY KEY,
 	nombre VARCHAR (180),
 	descripcion VARCHAR (255),
 	precio DECIMAL DEFAULT 0,
-	imagen1 VARCHAR (255)  NULL,
+	imagen1 VARCHAR (255) NOT NULL,
 	imagen2 VARCHAR (255)  NULL,
 	imagen3 VARCHAR (255)  NULL,
 	id_categoria BIGINT,
@@ -138,15 +149,4 @@ CREATE TABLE orden_Producto(
 	PRIMARY KEY(id_orden, id_producto),	
 	FOREIGN KEY(id_orden) REFERENCES orden(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_producto) REFERENCES Producto(id_producto) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-DROP TABLE IF EXISTS usuarioRoles CASCADE;
-CREATE TABLE usuarioRoles(
-	id_usuario BIGINT NOT NULL,
-	id_rol BIGINT NOT NULL,
-	creacion_fecha TIMESTAMP (0) NOT NULL,
-	update_fecha TIMESTAMP (0) NOT NULL,
-	PRIMARY KEY(id_usuario, id_rol),	
-	FOREIGN KEY(id_usuario) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(id_rol) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

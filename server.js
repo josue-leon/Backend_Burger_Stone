@@ -25,6 +25,9 @@ const upload = multer({
 *Se va a instanciar las RUTAS// PARTE DE CREANDO API REST
 */
 const usuarios = require('./rutas/usuariosRutas');
+const categorias = require('./rutas/categoriasRutas');
+const productos = require('./rutas/productosRutas');
+
 const { credential } = require('firebase-admin');
 
 const port = process.env.PORT || 3000;
@@ -57,17 +60,15 @@ app.set ('port', port);
 
 //JOSUE
 
-server.listen(3000, '192.168.0.120' || 'localhost', function(){
+/*server.listen(3000, '192.168.0.120' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
-});
+});*/
 
-
-/*
 //MICHELLE
 server.listen(3000, '192.168.9.1' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
-*/
+
 /*
 *PARA EJECUTAR se llama a las RUTAS// PARTE DE CREANDO API REST
 */
@@ -78,6 +79,8 @@ server.listen(3000, '192.168.100.15' || 'localhost', function(){
 })
 */
 usuarios (app, upload);
+categorias(app);
+productos(app, upload);
 
 /*
 
