@@ -6,7 +6,11 @@ module.exports = {
 
     async create(req, res, next) 
     {
+        console.log("AQUI");
         let producto = JSON.parse(req.body.producto);
+        console.log("ACA NO PASA");
+
+        console.log(`Producto ${JSON.stringify(producto)}`);
         const files = req.files;
         let inserts = 0;
 
@@ -62,7 +66,7 @@ module.exports = {
             } 
             catch (error)
             {
-                console.log(`Error: ${error}`);
+                console.log(`Error producto: ${error}`);
                 return res.status(501).json({
                     message: 'Error al registrar el producto ${error}',
                     success: false,

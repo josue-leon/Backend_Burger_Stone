@@ -4,7 +4,7 @@ const Producto = {};
 Producto.create = (producto) => {
     const sql = `
     INSERT INTO
-    products(
+    producto(
         nombre,
         descripcion,
         precio,
@@ -34,7 +34,7 @@ Producto.create = (producto) => {
 Producto.update = (producto) => {
     const sql = `
     UPDATE
-        productos
+        producto
     SET
         nombre = $2,
         descripcion = $3,

@@ -22,7 +22,7 @@ const databaseConfig = {
     'user': 'postgres',
     'password': '0602100620' 
 };*/
-
+/*
 //ERIKA
 const databaseConfig = {
     'host': '127.0.0.1',
@@ -31,8 +31,8 @@ const databaseConfig = {
     'user': 'postgres',
     'password': 'ecka3011' 
 };
+*/
 
-/*
 //ANDREA
 const databaseConfig = {
     'host': '127.0.0.1', //192.168.100.15
@@ -41,6 +41,6 @@ const databaseConfig = {
     'user': 'postgres',
     'password': 'root' 
 };
-*/
+
 const db = pgp(databaseConfig);
 module.exports = db;

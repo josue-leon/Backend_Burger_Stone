@@ -129,7 +129,7 @@ CREATE TABLE producto(
 	nombre VARCHAR (180),
 	descripcion VARCHAR (255),
 	precio DECIMAL DEFAULT 0,
-	imagen1 VARCHAR (255) NOT NULL,
+	imagen1 VARCHAR (255)  NULL,
 	imagen2 VARCHAR (255)  NULL,
 	imagen3 VARCHAR (255)  NULL,
 	id_categoria BIGINT,
