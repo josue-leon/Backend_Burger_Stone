@@ -2,8 +2,26 @@ const Producto = require('../models/producto');
 const storage = require('../utils/cloud_storage');
 const asyncForEach = require('../utils/async_foreach');
 
+
 module.exports = {
 
+    async findByCategory(req, res, next){
+        try {
+            const id_categoria = req.params.id_categoria; // cliente
+            const data = await Producto.findByCategory(id_categoria);
+            return res.status(201).json(data);
+        } 
+        
+        catch (error) {
+            console.log(`Error producto: ${error}`);
+            return res.status(501).json({
+                message: `Error al listar los productos por categoría`,
+                success: false,
+                error: error
+            });
+        }
+    },
+    
     async create(req, res, next) 
     {
         console.log("AQUI");

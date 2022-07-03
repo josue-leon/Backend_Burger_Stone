@@ -1,5 +1,29 @@
 const db = require('../config/config');
 const Producto = {};
+//Consulta Sql para ver los productos dentro de una categoría
+Producto.findByCategory = (id_categoria) => {
+    const sql = `
+SELECT
+    P.id,
+    P.nombre,
+    P.descripcion,
+    P.precio,
+    P.imagen1,
+    P.imagen2,
+    P.imagen3,
+    P.id_categoria
+FROM 
+    producto AS P
+INNER JOIN
+    categorias AS C
+ON
+    P.id_categoria = C.id
+WHERE
+    C.id = $1
+`;
+ 
+return db.manyOrNone(sql, id_categoria);
+}
 
 Producto.create = (producto) => {
     const sql = `
