@@ -139,8 +139,8 @@ CREATE TABLE producto(
 
 );
 
-DROP TABLE IF EXISTS orden_Producto CASCADE;
-CREATE TABLE orden_Producto(
+DROP TABLE IF EXISTS orden_producto CASCADE;
+CREATE TABLE orden_producto(
 	id_orden BIGINT NOT NULL,
 	id_producto BIGINT NOT NULL,
 	cantidad BIGINT NOT NULL,
