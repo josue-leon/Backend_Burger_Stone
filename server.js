@@ -23,10 +23,13 @@ const upload = multer({
 
 /*
 *Se va a instanciar las RUTAS// PARTE DE CREANDO API REST
+RUTAS
 */
 const usuarios = require('./rutas/usuariosRutas');
 const categorias = require('./rutas/categoriasRutas');
 const productos = require('./rutas/productosRutas');
+const direccion = require('./rutas/direccionRutas');
+const orden = require('./rutas/ordenRutas');
 
 const { credential } = require('firebase-admin');
 
@@ -69,6 +72,12 @@ server.listen(3000, '192.168.9.1' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 });
 
+
+// Michelle ESPOCH
+/*server.listen(3000, '172.25.235.131', function(){
+    console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
+});*/
+
 /*
 *PARA EJECUTAR se llama a las RUTAS// PARTE DE CREANDO API REST
 */
@@ -79,8 +88,12 @@ server.listen(3000, '192.168.100.15' || 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
 })
 */
+
+// Llamando a las RUTAS
 usuarios (app, upload);
 categorias(app);
+direccion(app);
+orden(app);
 productos(app, upload);
 
 /*

@@ -14,9 +14,9 @@ module.exports = {
            message: 'hubo un error al tratar de obtener las categorias',
            error: error,
            succes: false
-        })
-     }
-},
+            })
+        }
+    },
     
     async create(req, res, next) {
         try{
