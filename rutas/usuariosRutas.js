@@ -7,6 +7,7 @@ module.exports = (app, upload) => {
     //traer datos
     app.get('/BurgerStone/usuario/getAll', UsuariosController.getAll);//para crear una nueva ruta
     app.get('/BurgerStone/usuario/findById/:id', passport.authenticate('jwt', {session: false}), UsuariosController.findById); // El parámetro que se captura es id con /:id
+    app.get('/BurgerStone/usuario/findDelivery', passport.authenticate('jwt', {session: false}), UsuariosController.findDelivery);
     app.get('/BurgerStone/usuario/validateCI',UsuariosController.validateCI);// validar si la cedula existe 
 
     //guardar datos

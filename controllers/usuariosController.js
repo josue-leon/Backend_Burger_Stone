@@ -4,7 +4,7 @@ const Rol = require('../models/rol');
 const jwt = require('jsonwebtoken');     
 const keys = require('../config/keys');     
 const storage = require('../utils/cloud_storage');
-const { update } = require('../models/usuario');
+const { update, findDelivery } = require('../models/usuario');
 
 module.exports = {
 
@@ -64,6 +64,22 @@ module.exports = {
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener el usuario por ID'
+            });
+        }
+    },
+
+        // Encontrar por id (Para actualizar en la app)
+    async findDelivery(req, res, next){
+        try {
+            const data = await Usuario.findDelivery();
+            console.log(`Repartidores: ${data}`);
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener los repartidores'
             });
         }
     },

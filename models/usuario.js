@@ -59,6 +59,34 @@ Usuario.findById = (id, callback) => {
     return db.oneOrNone(sql, id).then(user => {callback(null, user); })
 }
 
+Usuario.findDelivery = () => {
+    const sql = `
+    SELECT
+        U.id,
+        U.cedula,    
+        U.email,
+        U.nombre,
+        U.apellido,
+        U.telefono,
+        U.imagen,
+        U.password,
+        U.session_token
+    FROM
+        usuario U
+    INNER JOIN
+        usuarioroles UR
+    ON
+        UR.id_usuario = U.id
+    INNER JOIN
+        roles R
+    ON
+        R.id = UR.id_rol
+    WHERE
+        R.id = 3
+    `;
+    return db.manyOrNone(sql);
+}
+
 Usuario.findByEmail = (email) => {
     const sql = `
 SELECT
