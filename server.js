@@ -9,6 +9,10 @@ const multer = require('multer');
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
 const passport = require('passport');
+const io = require('socket.io')(server);
+
+// SOCKETS
+const orderDeliverySocket = require ('./sockets/orders_delivery_socket');
 
 /*
 * Inicializar Firebase Admin
@@ -56,6 +60,9 @@ require('./config/passport')(passport);
 
 app.disable('x-powered-by');
 app.set ('port', port);
+
+// Llamar a los Sockets
+orderDeliverySocket(io);
 
 /*server.listen(3000, 'localhost', function(){
     console.log('Aplicacion de NodeJs ' +port + ' Iniciada..')
