@@ -1,4 +1,4 @@
-const { update } = require('../models/orden');
+const { update, updateLatLng } = require('../models/orden');
 const Orden = require('../models/orden');
 const OrdenProducto = require('../models/orden_producto');
 
@@ -140,6 +140,28 @@ module.exports = {
             let orden = req.body;
             orden.status = 'ENTREGADO';
             await Orden.update(orden);
+
+            return res.status(201).json({
+                success: true,
+                message: 'La orden se actualizó correctamente',
+            });
+
+        }
+        catch (error) {
+            console.log(`Error ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al actualizar la orden',
+                error: error
+            });
+        }
+    },
+
+    async updateLatLng(req, res, next) {
+        try 
+        {
+            let orden = req.body;
+            await Orden.updateLatLng(orden);
 
             return res.status(201).json({
                 success: true,

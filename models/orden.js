@@ -155,6 +155,8 @@ Orden.findByClientAndStatus = (id_cliente, status) => {
         O.id_repartidor,
         O.status,
         O.timestamp,
+        O.latitud,
+        O.longitud,
 		JSON_AGG(
 			JSON_BUILD_OBJECT(
 				'id', P.id,
@@ -261,6 +263,23 @@ Orden.update = (orden) => {
         orden.id_repartidor,
         orden.status,
         new Date()
+    ]);
+}
+
+Orden.updateLatLng = (orden) => {
+    const sql = `
+    UPDATE
+        orden
+    SET
+        latitud = $2,
+        longitud = $3
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        orden.id,
+        orden.latitud,
+        orden.longitud
     ]);
 }
 

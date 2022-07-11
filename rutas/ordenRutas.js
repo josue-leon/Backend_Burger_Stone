@@ -15,5 +15,6 @@ module.exports = (app => {
     app.put('/BurgerStone/orden/updateToDispatched', passport.authenticate('jwt', {session: false}), OrdenController.updateToDispatched);
     app.put('/BurgerStone/orden/updateToOnTheWay', passport.authenticate('jwt', {session: false}), OrdenController.updateToOnTheWay);
     app.put('/BurgerStone/orden/updateToDelivery', passport.authenticate('jwt', {session: false}), OrdenController.updateToDelivery);
+    app.put('/BurgerStone/orden/updateLatLng', passport.authenticate('jwt', {session: false}), OrdenController.updateLatLng);
 
 })
